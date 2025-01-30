@@ -30,7 +30,7 @@
 
 - name: Clone MoniTHOR-infra repository
   git:
-    repo: 'https://github.com/ebenhamu/MoniTHOR-infra.git'
+    repo: 'https://github.com/ebenhamu/MoniTHOR-FE-BE.git'
     dest: /home/{{ ansible_user }}/jenkins_agent/MoniTHOR-infra
     version: master
 
