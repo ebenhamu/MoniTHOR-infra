@@ -23,12 +23,6 @@
     group: 1000
     mode: "0755"
 
-- name: Copy hub.cfg to jenkins_agent
-  copy:
-    src: "{{ playbook_dir }}/hub.cfg"
-    dest: /home/{{ ansible_user }}/jenkins_agent/hub.cfg
-    mode: '0644'
-
 - name: Install Git
   apt:
     name: git
