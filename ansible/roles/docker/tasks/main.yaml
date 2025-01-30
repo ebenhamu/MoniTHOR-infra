@@ -1,4 +1,3 @@
----
 - name: Update system packages
   apt:
     update_cache: yes
@@ -30,6 +29,17 @@
     dest: /home/{{ ansible_user }}/jenkins_agent/hub.cfg
     mode: '0644'
 
+- name: Install Git
+  apt:
+    name: git
+    state: present
+
+- name: Clone MoniTHOR-infra repository
+  git:
+    repo: 'https://github.com/ebenhamu/MoniTHOR-infra.git'
+    dest: /home/{{ ansible_user }}/jenkins_agent/MoniTHOR-infra
+    version: master
+
 - name: Print output to console
   debug:
-    msg: "Docker is installed successfully"
+    msg: "Docker is installed and GitHub repository is cloned successfully"
