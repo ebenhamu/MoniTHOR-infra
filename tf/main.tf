@@ -36,7 +36,7 @@ resource "aws_instance" "docker" {
 resource "local_file" "ansible_inventory" {
   content = templatefile("${path.module}/../ansible/inventory.yaml.tpl", {
   
-    docker_agent_ip   = aws_instance.docker[0].public_ip 
+    docker_node_ip   = aws_instance.docker[0].public_ip 
     key_name         = "${var.key_path}/${var.key_name}.pem"
     ssh_user         = var.ssh_user
   
