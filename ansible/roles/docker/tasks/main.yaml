@@ -15,6 +15,15 @@
     state: started
     enabled: yes
 
+
+- name: Create work directory
+  file:
+    path: /home/{{ ansible_user }}/work
+    state: directory
+    owner: 1000
+    group: 1000
+    mode: "0755"
+
 - name: Install Git
   apt:
     name: git
@@ -23,7 +32,7 @@
 - name: Clone MoniTHOR-infra repository
   git:
     repo: 'https://github.com/ebenhamu/MoniTHOR-FE-BE.git'
-    dest: /home/{{ ansible_user }}/
+    dest: /home/{{ ansible_user }}/work
     version: main
 
 - name: Print output to console
