@@ -55,14 +55,14 @@ resource "local_file" "ansible_cfg" {
   filename = "${path.module}/../ansible/ansible.cfg"
 }
 
-# # Run Ansible after inventory is created
-# resource "null_resource" "run_ansible" {
-#   depends_on = [local_file.ansible_inventory]
+# Run Ansible after inventory is created
+resource "null_resource" "run_ansible" {
+  depends_on = [local_file.ansible_inventory]
 
-#   provisioner "local-exec" {
-#     command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ${path.module}/../ansible/inventory.yaml ${path.module}/../ansible/main.yaml "
-#   }
-# }
+  provisioner "local-exec" {
+    command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ${path.module}/../ansible/inventory.yaml ${path.module}/../ansible/main.yaml "
+  }
+}
 
 
 output "docker_node_ip" {
