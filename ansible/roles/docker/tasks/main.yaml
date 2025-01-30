@@ -32,7 +32,7 @@
   git:
     repo: 'https://github.com/ebenhamu/MoniTHOR-FE-BE.git'
     dest: /home/{{ ansible_user }}/jenkins_agent/MoniTHOR-infra
-    version: master
+    version: main
 
 - name: Print output to console
   debug:
