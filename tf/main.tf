@@ -65,7 +65,7 @@ resource "local_file" "ansible_cfg" {
 # }
 
 
-output "docker_agent_ip" {
+output "docker_node_ip" {
   value = aws_instance.docker[0].public_ip
 }
 
