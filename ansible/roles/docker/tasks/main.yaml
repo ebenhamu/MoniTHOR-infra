@@ -35,6 +35,36 @@
     dest: /home/{{ ansible_user }}/work
     version: main
 
+
+- name: Build Docker image as sudo
+  ansible.builtin.command:
+    cmd: sudo docker build -t monithor_be:beck .
+    chdir: /home/ubuntu/work/MoniTHOR--Project-BE
+
+
+- name: Build Docker image as sudo
+  ansible.builtin.command:
+    cmd: sudo docker build -t monithor_fe:front .
+    chdir: /home/ubuntu/work/MoniTHOR--Project-FE
+
+
+
 - name: Print output to console
   debug:
     msg: "Docker is installed and GitHub repository is cloned successfully"
+
+
+
+- name: Run Docker container as sudo
+  ansible.builtin.command:
+    cmd: sudo docker run -d --network host --name backend_container -p 5000:5000 
+
+
+- name: Run frontend Docker container as sudo
+  ansible.builtin.command:
+    cmd: sudo docker run -d --network host --name frontend_container -p 8080:8080
+
+
+
+
+
