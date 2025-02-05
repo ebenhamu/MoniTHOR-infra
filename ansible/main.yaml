@@ -1,11 +1,10 @@
-- name: Apply backend role to backend group
-  hosts: backend-node
+- hosts: backend-node
   become: yes
   roles:
     - backend
 
-- name: Apply frontend role to frontend group
-  hosts: frontend-node
+
+- hosts: frontend-node
   become: yes
   roles:
     - frontend
