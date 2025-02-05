@@ -2,10 +2,10 @@
   hosts: backend-node
   become: yes
   roles:
-    -backend
+    - backend
 
 - name: Apply frontend role to frontend group
   hosts: frontend-node
   become: yes
   roles:
-    -frontend
+    - frontend
