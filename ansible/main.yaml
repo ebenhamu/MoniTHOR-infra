@@ -1,10 +1,5 @@
-- hosts: backend-node
+
+- hosts:  docker 
   become: yes
   roles:
-   - backend
-
-
-- hosts: frontend-node
-  become: yes
-  roles:
-   - frontend
+    - docker

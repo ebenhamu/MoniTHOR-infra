@@ -6,8 +6,5 @@ all:
   children:
     docker:
       hosts:
-        backend-node:
-          backend: ${backend_node_ip}
-        frontend-node:
-          frontend: ${frontend_node_ip}
-          backend_ip: ${backend_node_ip}
+        docker-node:
+          ansible_host: ${docker_node_ip}
