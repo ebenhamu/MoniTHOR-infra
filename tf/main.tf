@@ -6,6 +6,7 @@ terraform {
       version = "~> 3.0"
     }
   }
+
 }
 
 # Configure AWS provider with the specified region
