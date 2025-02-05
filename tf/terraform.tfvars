@@ -1,7 +1,7 @@
 aws_region             = "us-west-2"
 ami                    = "ami-05d38da78ce859165" 
 instance_type          = "t2.micro"
-key_name               = "monithor" # Change your key name here    
+key_name               = "myawskey" # Change your key name here    
 key_path               = "./" # Change the path to the key file    
 security_group_id      = "sg-02b3d29bdcd49a0cc"
 subnet_ids             = ["subnet-06d26c27601fa5b42", "subnet-07100b1f42a85f126"]
