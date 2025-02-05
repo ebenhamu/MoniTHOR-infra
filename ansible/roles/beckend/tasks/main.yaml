@@ -1,0 +1,65 @@
+- name: Gather backend server facts
+  hosts: backend-node
+  tasks:
+    - name: Gather facts
+      setup:
+
+    - name: Get backend server IP address
+      set_fact:
+        backend_ip: "{{ ansible_default_ipv4.address }}"
+
+    - name: Add backend IP to group vars
+      add_host:
+        name: frontend-node
+        backend_ip: "{{ backend_ip }}"
+
+    - name: Update system packages
+      apt:
+        update_cache: yes
+
+    - name: Install Docker
+      apt:
+        name: 
+          - docker.io
+          - docker-compose
+        state: present
+
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Create work directory
+      file:
+        path: /home/{{ ansible_user }}/work
+        state: directory
+        owner: 1000
+        group: 1000
+        mode: "0755"
+
+    - name: Install Git
+      apt:
+        name: git
+        state: present
+
+    - name: Clone MoniTHOR-infra repository
+      git:
+        repo: 'https://github.com/ebenhamu/MoniTHOR-FE-BE.git'
+        dest: /home/{{ ansible_user }}/work
+        version: main
+
+    - name: Build Docker image as sudo (backend)
+      ansible.builtin.command:
+        cmd: sudo docker build -t monithor_be:beck .
+        chdir: /home/ubuntu/work/MoniTHOR--Project-BE
+
+    - name: Run Docker backend container
+      community.docker.docker_container:
+        name: "backend_container"
+        image: "monithor_be:beck"
+        state: started
+        published_ports:
+           - "5000:5000"
+        network_mode: host
+        restart_policy: always
