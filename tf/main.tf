@@ -44,7 +44,7 @@ resource "local_file" "ansible_cfg" {
 
 resource "null_resource" "wait_for_ssh" {
   provisioner "local-exec" {
-    command = "sleep 20"  # Wait for 20 seconds
+    command = "sleep 60"  # Wait for 20 seconds
   }
 }
 
