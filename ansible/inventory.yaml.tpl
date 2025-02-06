@@ -6,7 +6,12 @@ all:
   children:
     docker:
       hosts:
-%{ for ip, name in zip(docker_node_ips, node_names) ~}
-        ${name}:
+%{ for ip in docker_node_ips ~}
+%{ if ip == docker_node_ips[0] ~}
+        Test-FE:
           ansible_host: ${ip}
+%{ else ~}
+        Test-BE:
+          ansible_host: ${ip}
+%{ endif ~}
 %{ endfor ~}
