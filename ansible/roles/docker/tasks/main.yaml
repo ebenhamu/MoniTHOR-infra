@@ -1,3 +1,8 @@
+---
+- name: Configure Docker on both nodes
+  hosts: all
+  become: yes
+  tasks:
     - name: Update system packages
       apt:
         update_cache: yes
