@@ -46,7 +46,7 @@
     - name: Build Docker image as sudo (frontend)
       ansible.builtin.command:
         cmd: sudo docker build -t monithor_fe:front .
-        chdir: /home/ubuntu/work/MoniTHOR--Project-FE
+        chdir: /home/{{ ansible_user }}/work/MoniTHOR--Project-FE
 
     - name: Run Docker frontend container
       community.docker.docker_container:
@@ -71,7 +71,7 @@
     - name: Build Docker image as sudo (backend)
       ansible.builtin.command:
         cmd: sudo docker build -t monithor_be:beck .
-        chdir: /home/ubuntu/work/MoniTHOR--Project-BE
+        chdir: /home/{{ ansible_user }}/work/MoniTHOR--Project-BE
 
     - name: Run Docker backend container
       community.docker.docker_container:
