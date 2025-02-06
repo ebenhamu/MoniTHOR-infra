@@ -1,5 +1,48 @@
+---
+- name: Configure Docker on both nodes
+  hosts: all
+  become: yes
+  tasks:
+    - name: Update system packages
+      apt:
+        update_cache: yes
 
-- hosts:  docker 
+    - name: Install Docker
+      apt:
+        name:
+          - docker.io
+          - docker-compose
+        state: present
+
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Create work directory
+      file:
+        path: /home/{{ ansible_user }}/work
+        state: directory
+        owner: 1000
+        group: 1000
+        mode: "0755"
+
+    - name: Install Git
+      apt:
+        name: git
+        state: present
+
+- name: Configure and run backend Docker container on Test-BE
+  hosts: Test-BE
   become: yes
   roles:
-    - docker
+    - backend
+    
+- name: Configure and run frontend Docker container on Test-FE
+  hosts: Test-FE
+  become: yes
+  roles:
+    - frontend
+
+
