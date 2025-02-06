@@ -1,3 +1,5 @@
+---
+- name: Configure Docker on both nodes
   hosts: all
   become: yes
   tasks:
