@@ -6,5 +6,7 @@ all:
   children:
     docker:
       hosts:
-        docker-node:
-          ansible_host: ${docker_node_ip}
+%{ for ip in docker_node_ips ~}
+        ${ip}:
+          ansible_host: ${ip}
+%{ endfor ~}
