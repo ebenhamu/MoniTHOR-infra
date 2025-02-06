@@ -23,11 +23,21 @@ resource "aws_instance" "docker" {
   key_name = var.key_name
   vpc_security_group_ids = [var.security_group_id]
   tags = {
-    Name = "Test-FE-BE"
+    Name = "Test-BE"
     Managed_By  = "Terraform"
   }
 }
-
+resource "aws_instance" "docker" {
+  count         = 1  # Set to desired number of instances 
+  ami           = var.ami
+  instance_type = var.instance_type
+  key_name = var.key_name
+  vpc_security_group_ids = [var.security_group_id]
+  tags = {
+    Name = "Test-FE"
+    Managed_By  = "Terraform"
+  }
+}
 
 
 
