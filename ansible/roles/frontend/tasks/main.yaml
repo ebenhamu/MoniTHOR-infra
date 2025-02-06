@@ -5,6 +5,12 @@
     dest: /home/{{ ansible_user }}/work
     version: main
 
+- name: Update frontend configuration to point to backend
+  lineinfile:
+    path: /home/{{ ansible_user }}/work/MoniTHOR--Project-FE/config.json
+    regexp: '"BE_SERVER": .*'
+    line: '"BE_SERVER": "{{ hostvars["Test-BE"].ansible_host }}"'
+
 - name: Build Docker image as sudo (frontend)
   ansible.builtin.command:
     cmd: sudo docker build -t monithor_fe:front .
