@@ -8,10 +8,10 @@ all:
       hosts:
 %{ for ip in docker_node_ips ~}
 %{ if ip == docker_node_ips[0] ~}
-        Test-FE:
+        monithor-fe:
           ansible_host: ${ip}
 %{ else ~}
-        Test-BE:
+        monithor-be:
           ansible_host: ${ip}
 %{ endif ~}
 %{ endfor ~}

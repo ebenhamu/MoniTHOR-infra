@@ -18,7 +18,7 @@ resource "aws_instance" "docker" {
   key_name      = var.key_name
   vpc_security_group_ids = [var.security_group_id]
   tags = {
-    Name       = count.index == 0 ? "Test-FE" : "Test-BE"
+    Name       = count.index == 0 ? "monithor-fe" : "monithor-be"
     Managed_By = "Terraform"
   }
 }

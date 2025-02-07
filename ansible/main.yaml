@@ -33,14 +33,14 @@
         name: git
         state: present
 
-- name: Configure and run backend Docker container on Test-BE
-  hosts: Test-BE
+- name: Configure and run backend Docker container on monithor-be
+  hosts: monithor-be
   become: yes
   roles:
     - backend
-    
-- name: Configure and run frontend Docker container on Test-FE
-  hosts: Test-FE
+
+- name: Configure and run frontend Docker container on monithor-fe
+  hosts: monithor-fe
   become: yes
   roles:
     - frontend
