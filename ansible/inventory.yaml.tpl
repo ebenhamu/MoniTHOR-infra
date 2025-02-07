@@ -4,10 +4,10 @@ all:
     ansible_user: ${ssh_user}
     ansible_python_interpreter: /usr/bin/python3
   children:
-    docker:
+    app:
       hosts:
-%{ for ip in docker_node_ips ~}
-%{ if ip == docker_node_ips[0] ~}
+%{ for ip in app_node_ips ~}
+%{ if ip == app_node_ips[0] ~}
         monithor-fe:
           ansible_host: ${ip}
 %{ else ~}

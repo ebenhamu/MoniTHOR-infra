@@ -11,7 +11,7 @@ provider "aws" {
   region = var.aws_region
 }
 
-resource "aws_instance" "docker" {
+resource "aws_instance" "app" {
   count         = 2  # Create two instances
   ami           = var.ami
   instance_type = var.instance_type
@@ -25,7 +25,7 @@ resource "aws_instance" "docker" {
 
 resource "local_file" "ansible_inventory" {
   content = templatefile("${path.module}/../ansible/inventory.yaml.tpl", {
-    docker_node_ips = aws_instance.docker.*.public_ip
+    app_node_ips = aws_instance.app.*.public_ip
     key_name        = "${var.key_path}/${var.key_name}.pem"
     ssh_user        = var.ssh_user
   })
@@ -56,8 +56,8 @@ resource "null_resource" "run_ansible" {
   }
 }
 
-output "docker_node_ips" {
-  value = aws_instance.docker.*.public_ip
+output "app_node_ips" {
+  value = aws_instance.app.*.public_ip
 }
 
 output "key_name" {
