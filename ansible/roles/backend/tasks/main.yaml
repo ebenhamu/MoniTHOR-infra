@@ -17,7 +17,5 @@
     state: started
     published_ports:
       - "5000:5000"
-    volumes:
-      - /work:/work/MoniTHOR--Project-BE/userdata
     network_mode: host
     restart_policy: always
