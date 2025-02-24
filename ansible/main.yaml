@@ -81,8 +81,13 @@
         ports:
           - "5432:5432"
 
+    - name: Copy init_db.sql to monithor-db node
+      copy:
+        src: ./init_db.sq
+        dest: /home/{{ ansible_user }}/init_db.sql
+
     - name: Copy init_db.sql to PostgreSQL container
-      command: docker cp init_db.sql my_postgres_db:/init_db.sql
+      command: docker cp /home/{{ ansible_user }}/init_db.sql my_postgres_db:/init_db.sql
 
     - name: Initialize database with init_db.sql
       command: docker exec my_postgres_db psql -U myuser -d storedb -f /init_db.sql
