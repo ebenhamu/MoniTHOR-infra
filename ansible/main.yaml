@@ -1,5 +1,5 @@
 ---
-- name: Configure Docker on both nodes
+- name: Configure Docker on all nodes
   hosts: all
   become: yes
   tasks:
@@ -45,4 +45,44 @@
   roles:
     - frontend
 
+- name: Configure and run database Docker container on monithor-db
+  hosts: monithor-db
+  become: yes
+  tasks:
+    - name: Create PostgreSQL data directory
+      file:
+        path: /home/{{ ansible_user }}/postgres_data
+        state: directory
+        owner: 1000
+        group: 1000
+        mode: "0755"
 
+    - name: Change ownership of postgres_data directory
+      command: sudo chown -R 999:999 /home/{{ ansible_user }}/postgres_data
+
+    - name: Pull PostgreSQL image
+      docker_image:
+        name: postgres
+        tag: "13"
+        source: pull
+
+    - name: Run PostgreSQL container
+      docker_container:
+        name: my_postgres_db
+        image: postgres:13
+        state: started
+        restart_policy: always
+        env:
+          POSTGRES_USER: myuser
+          POSTGRES_PASSWORD: mypassword
+          POSTGRES_DB: storedb
+        volumes:
+          - /home/{{ ansible_user }}/postgres_data:/var/lib/postgresql/data
+        ports:
+          - "5432:5432"
+
+    - name: Copy init_db.sql to PostgreSQL container
+      command: docker cp /path/to/init_db.sql my_postgres_db:/init_db.sql
+
+    - name: Initialize database with init_db.sql
+      command: docker exec my_postgres_db psql -U myuser -d storedb -f /init_db.sql
