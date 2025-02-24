@@ -82,7 +82,7 @@
           - "5432:5432"
 
     - name: Copy init_db.sql to PostgreSQL container
-      command: docker cp /path/to/init_db.sql my_postgres_db:/init_db.sql
+      command: docker cp init_db.sql my_postgres_db:/init_db.sql
 
     - name: Initialize database with init_db.sql
       command: docker exec my_postgres_db psql -U myuser -d storedb -f /init_db.sql
