@@ -10,8 +10,11 @@ all:
 %{ if ip == app_node_ips[0] ~}
         monithor-fe:
           ansible_host: ${ip}
-%{ else ~}
+%{ elif ip == app_node_ips[1] ~}
         monithor-be:
+          ansible_host: ${ip}
+%{ else ~}
+        monithor-db:
           ansible_host: ${ip}
 %{ endif ~}
 %{ endfor ~}
