@@ -12,13 +12,13 @@ provider "aws" {
 }
 
 resource "aws_instance" "app" {
-  count         = 2  # Create two instances
+  count         = 3  # Create three instances
   ami           = var.ami
   instance_type = var.instance_type
   key_name      = var.key_name
   vpc_security_group_ids = [var.security_group_id]
   tags = {
-    Name       = count.index == 0 ? "monithor-fe" : "monithor-be"
+    Name       = count.index == 0 ? "monithor-fe" : count.index == 1 ? "monithor-be" : "monithor-db"
     Managed_By = "Terraform"
   }
 }
