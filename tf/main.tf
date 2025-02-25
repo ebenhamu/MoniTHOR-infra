@@ -56,22 +56,17 @@ resource "null_resource" "run_ansible" {
   }
 }
 
-output "app_node_ips" {
-  value = aws_instance.app.*.public_ip
-  description = "List of public IP addresses for the application nodes"
-}
-
-output "frontend_ip" {
+output "monithor-fe" {
   value = aws_instance.app[0].public_ip
   description = "Public IP address for the frontend node (monithor-fe)"
 }
 
-output "backend_ip" {
+output "monithor-be" {
   value = aws_instance.app[1].public_ip
   description = "Public IP address for the backend node (monithor-be)"
 }
 
-output "database_ip" {
+output "monithor-db" {
   value = aws_instance.app[2].public_ip
   description = "Public IP address for the database node (monithor-db)"
 }
