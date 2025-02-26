@@ -38,6 +38,7 @@
   become: yes
   roles:
     - db
+    
 - name: Configure and run backend Docker container on monithor-be
   hosts: monithor-be
   become: yes
