@@ -25,7 +25,7 @@ INSERT INTO domains (user_id, domain_name) VALUES
 (1, 'google.com'),
 (1, 'facebook.com'),
 (2, 'yahoo.com'),
-(2, 'bing.com');
+(2, 'bing.com'),
 (3, 'amazon.com'),
 (3, 'apple.com');
 
