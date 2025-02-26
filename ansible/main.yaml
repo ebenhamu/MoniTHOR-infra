@@ -1,5 +1,5 @@
 ---
-- name: Configure Docker on both nodes
+- name: Configure Docker on all nodes
   hosts: all
   become: yes
   tasks:
@@ -32,7 +32,12 @@
       apt:
         name: git
         state: present
-
+                
+- name: Configure and run database Docker container on monithor-db
+  hosts: monithor-db
+  become: yes
+  roles:
+    - db
 - name: Configure and run backend Docker container on monithor-be
   hosts: monithor-be
   become: yes
@@ -44,5 +49,3 @@
   become: yes
   roles:
     - frontend
-
-

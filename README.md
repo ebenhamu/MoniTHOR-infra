@@ -3,6 +3,7 @@ MoniTHOR-FE-BE infra
 
 
 - git clone https://github.com/ebenhamu/MoniTHOR-infra
+- Branch B1
 
 - update relevant setting in  tf/terraform.tfvars file :
     Example:
