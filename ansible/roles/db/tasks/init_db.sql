@@ -9,10 +9,11 @@ CREATE TABLE domains (
     domain_id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
     domain_name VARCHAR(30) NOT NULL,
-    status_code VARCHAR(10) DEFAULT "unknown",
-    ssl_expiration VARCHAR(10) DEFAULT "unknown",
-    ssl_Issuer VARCHAR(20) DEFAULT "unknown" ,
-    FOREIGN KEY (user_id) REFERENCES user_credentials(id)
+    status_code VARCHAR(10) DEFAULT 'unknown',
+    ssl_expiration VARCHAR(10) DEFAULT 'unknown',
+    ssl_Issuer VARCHAR(20) DEFAULT 'unknown',
+    FOREIGN KEY (user_id) REFERENCES user_credentials(id),
+    CONSTRAINT unique_domain_columns UNIQUE (user_id, domain_name)
 );
 
 INSERT INTO user_credentials (username, password) VALUES
