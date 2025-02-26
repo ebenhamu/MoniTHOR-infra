@@ -18,7 +18,7 @@ CREATE TABLE domains (
 
 INSERT INTO user_credentials (username, password) VALUES
 ('David', '1223'),
-('Sarah', '4567');
+('Sarah', '4567'),
 ('John', '7890'); 
 
 INSERT INTO domains (user_id, domain_name) VALUES
