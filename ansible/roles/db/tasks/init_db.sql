@@ -11,7 +11,7 @@ CREATE TABLE domains (
     domain_name VARCHAR(50) NOT NULL,
     status_code VARCHAR(50) DEFAULT 'unknown',
     ssl_expiration VARCHAR(50) DEFAULT 'unknown',
-    ssl_issuer VARCHAR(30) DEFAULT 'unknown',
+    ssl_issuer VARCHAR(50) DEFAULT 'unknown',    
     FOREIGN KEY (username) REFERENCES users(username),
     CONSTRAINT unique_domain_columns UNIQUE (username, domain_name)
 );

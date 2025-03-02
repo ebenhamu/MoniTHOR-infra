@@ -1,9 +1,15 @@
 ---
 - name: Clone MoniTHOR-FE-BE repository
   git:
-    repo: 'https://github.com/ebenhamu/MoniTHOR-FE-BE.git'
+    repo: 'https://github.com/ebenhamu/MoniTHOR-FE-BE-DB.git'
     dest: /home/{{ ansible_user }}/work
     version: main
+
+- name: Update backend configuration to point to DB server
+  lineinfile:
+    path: /home/{{ ansible_user }}/work/MoniTHOR--Project-BE/config.json
+    regexp: '"DB_SERVER": .*'
+    line: '"DB_SERVER": "{{ hostvars["monithor-db"].ansible_host }}"'
 
 - name: Build Docker image as sudo (backend)
   ansible.builtin.command:

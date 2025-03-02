@@ -1,7 +1,7 @@
 ---
 - name: Clone MoniTHOR-FE-BE repository
   git:
-    repo: 'https://github.com/ebenhamu/MoniTHOR-FE-BE.git'
+    repo: 'https://github.com/ebenhamu/MoniTHOR-FE-BE-DB.git'
     dest: /home/{{ ansible_user }}/work
     version: main
 
