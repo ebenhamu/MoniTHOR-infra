@@ -9,7 +9,7 @@
   lineinfile:
     path: /home/{{ ansible_user }}/work/MoniTHOR--Project-BE/config.json
     regexp: '"DB_SERVER": .*'
-    line: '"DB_SERVER": "{{ hostvars["monithor-db"].ansible_host }}"
+    line: '"DB_SERVER": "{{ hostvars["monithor-db"].ansible_host }}"'
 
 - name: Build Docker image as sudo (backend)
   ansible.builtin.command:
