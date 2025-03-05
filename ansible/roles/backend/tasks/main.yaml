@@ -5,6 +5,12 @@
     dest: /home/{{ ansible_user }}/work
     version: main
 
+- name: Update backend configuration to point to DB server
+  lineinfile:
+    path: /home/{{ ansible_user }}/work/MoniTHOR--Project-BE/config.json
+    regexp: '"DB_SERVER": .*'
+    line: '"DB_SERVER": "{{ hostvars["monithor-db"].ansible_host }}"
+
 - name: Build Docker image as sudo (backend)
   ansible.builtin.command:
     cmd: sudo docker build -t monithor_be:beck .
