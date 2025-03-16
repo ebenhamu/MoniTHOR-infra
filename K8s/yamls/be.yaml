@@ -47,7 +47,7 @@ spec:
   - from:
     - podSelector:
         matchLabels:
-          app: monithor-frontend
+          app: monithor-backend
     ports:
     - protocol: TCP
       port: 5000

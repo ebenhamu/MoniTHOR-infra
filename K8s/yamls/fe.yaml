@@ -45,7 +45,7 @@ spec:
   - from:
     - podSelector:
         matchLabels:
-          app: monithor-backend
+          app: monithor-frontend
     ports:
     - protocol: TCP
       port: 8080
