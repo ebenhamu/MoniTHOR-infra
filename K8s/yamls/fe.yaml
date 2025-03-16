@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: monithor_frontend
+spec:
+  serviceName: "frontend-service"
+  replicas: 3
+  selector:
+    matchLabels:
+      app: monithor_frontend
+  template:
+    metadata:
+      labels:
+        app: monithor_frontend
+    spec:
+      containers:
+      - name: frontend
+        image: monithor:fe
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: monithor_frontend
+  ports:
+  - port: 8080
+    targetPort: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: test-network-policy
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: monithor
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - protocol: TCP
+      port: 8080
+  egress:
+  - to:
+    - protocol: TCP
+      port: 5000   
