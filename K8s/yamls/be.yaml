@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: monithor-backend
-        image: monithor:be
+        image: maye18/monithork:be
         ports:
         - containerPort: 5000
 ---

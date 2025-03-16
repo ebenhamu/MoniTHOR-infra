@@ -14,10 +14,7 @@ spec:
     spec:
       containers:
       - name: monithor-frontend
-        image: monithor:fe
-        env:
-        - name: BACKEND_IP
-          value: "backend-service"
+        image: maye18/monithork:fe
         ports:
         - containerPort: 8080
 ---
